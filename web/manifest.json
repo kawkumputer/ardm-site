@@ -1,0 +1,35 @@
+{
+    "name": "ARDM — Association des Ressortissants de M'bahé",
+    "short_name": "ARDM",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#F2F4EE",
+    "theme_color": "#2B6E64",
+    "description": "Association des ressortissants de M'bahé en Europe — projets de solidarité pour le village de M'bahé, Brakna, Mauritanie.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
