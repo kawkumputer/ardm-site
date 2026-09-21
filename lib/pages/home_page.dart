@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../models/project.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../widgets/content_wrap.dart';
@@ -15,7 +17,7 @@ class HomePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _Hero(imageAsset: flagship.imageAsset),
+        _Hero(photos: flagship.gallery),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 56),
           child: ContentWrap(
@@ -58,9 +60,42 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _Hero extends StatelessWidget {
-  final String? imageAsset;
-  const _Hero({required this.imageAsset});
+class _Hero extends StatefulWidget {
+  final List<GalleryPhoto> photos;
+  const _Hero({required this.photos});
+
+  @override
+  State<_Hero> createState() => _HeroState();
+}
+
+class _HeroState extends State<_Hero> {
+  late final PageController _controller;
+  Timer? _timer;
+  int _index = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController();
+    if (widget.photos.length > 1) {
+      _timer = Timer.periodic(const Duration(seconds: 5), (_) {
+        if (!mounted) return;
+        _index = (_index + 1) % widget.photos.length;
+        _controller.animateToPage(
+          _index,
+          duration: const Duration(milliseconds: 700),
+          curve: Curves.easeInOut,
+        );
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +106,16 @@ class _Hero extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          if (imageAsset != null)
-            Image.asset(imageAsset!, fit: BoxFit.cover, alignment: const Alignment(0, -0.4)),
+          if (widget.photos.isNotEmpty)
+            PageView.builder(
+              controller: _controller,
+              itemCount: widget.photos.length,
+              onPageChanged: (i) => setState(() => _index = i),
+              itemBuilder: (context, i) {
+                final photo = widget.photos[i];
+                return Image.asset(photo.asset, fit: BoxFit.cover, alignment: photo.alignment);
+              },
+            ),
           DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -146,6 +189,27 @@ class _Hero extends StatelessWidget {
               ),
             ),
           ),
+          if (widget.photos.length > 1)
+            Positioned(
+              right: 20,
+              bottom: 18,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(widget.photos.length, (i) {
+                  final active = i == _index;
+                  return AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    margin: const EdgeInsets.only(left: 6),
+                    width: active ? 18 : 7,
+                    height: 7,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: active ? .95 : .45),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  );
+                }),
+              ),
+            ),
         ],
       ),
     );

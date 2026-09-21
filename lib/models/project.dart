@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart' show Alignment;
+
 enum ProjectStatus {
   enCoursDeFinancement,
   planifie,
@@ -15,8 +17,13 @@ extension ProjectStatusLabel on ProjectStatus {
 class GalleryPhoto {
   final String asset;
   final String caption;
+  final Alignment alignment;
 
-  const GalleryPhoto({required this.asset, required this.caption});
+  const GalleryPhoto({
+    required this.asset,
+    required this.caption,
+    this.alignment = Alignment.center,
+  });
 }
 
 class Project {

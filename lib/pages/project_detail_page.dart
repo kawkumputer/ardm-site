@@ -112,7 +112,7 @@ class _GalleryGrid extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(photo.asset, height: 160, width: double.infinity, fit: BoxFit.cover),
+                child: Image.asset(photo.asset, height: 160, width: double.infinity, fit: BoxFit.cover, alignment: photo.alignment),
               ),
               const SizedBox(height: 8),
               Text(photo.caption, style: AppTextStyles.mono(size: 12, color: captionColor)),

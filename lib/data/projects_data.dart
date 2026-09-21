@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart' show Alignment;
 import '../models/project.dart';
 
 /// Tous les projets de l'association affichés dans l'onglet « Nos projets ».
@@ -29,16 +30,27 @@ final List<Project> projects = [
     ],
     gallery: [
       GalleryPhoto(
+        asset: 'assets/images/pirogue-ecoliers.jpg',
+        caption: 'La traversée quotidienne en pirogue pendant la saison des pluies.',
+        alignment: Alignment.topCenter,
+      ),
+      GalleryPhoto(
+        asset: 'assets/images/pirogue-groupe.jpg',
+        caption: 'Plusieurs enfants traversent ensemble, cartables sur le dos.',
+        alignment: Alignment.topCenter,
+      ),
+      GalleryPhoto(
+        asset: 'assets/images/pirogue-rive.jpg',
+        caption: 'La pirogue accoste près du village.',
+        alignment: Alignment.topCenter,
+      ),
+      GalleryPhoto(
         asset: 'assets/images/classe-garcons-saturee.jpg',
         caption: "L'école actuelle, aujourd'hui saturée.",
       ),
       GalleryPhoto(
         asset: 'assets/images/classe-filles-saturee.jpg',
         caption: 'Une salle de classe pleine — plus de places disponibles.',
-      ),
-      GalleryPhoto(
-        asset: 'assets/images/pirogue-groupe.jpg',
-        caption: 'La traversée quotidienne en pirogue pendant la saison des pluies.',
       ),
     ],
   ),
