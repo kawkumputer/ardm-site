@@ -202,7 +202,7 @@ class _FlagshipCard extends StatelessWidget {
     final image = project.imageAsset != null
         ? ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(project.imageAsset, height: 220, width: double.infinity, fit: BoxFit.cover),
+            child: Image.asset(project.imageAsset, height: 220, width: double.infinity, fit: BoxFit.cover, alignment: Alignment.topCenter),
           )
         : const SizedBox.shrink();
 

@@ -59,7 +59,7 @@ class ProjectDetailPage extends StatelessWidget {
             if (project.imageAsset != null)
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(project.imageAsset!, height: 320, width: double.infinity, fit: BoxFit.cover),
+                child: Image.asset(project.imageAsset!, height: 320, width: double.infinity, fit: BoxFit.cover, alignment: Alignment.topCenter),
               ),
             const SizedBox(height: 24),
             Wrap(
