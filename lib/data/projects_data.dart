@@ -27,6 +27,20 @@ final List<Project> projects = [
       'Région Île-de-France — Actions internationales',
       'Cités Unies France — jumelage',
     ],
+    gallery: [
+      GalleryPhoto(
+        asset: 'assets/images/classe-garcons-saturee.jpg',
+        caption: "L'école actuelle, aujourd'hui saturée.",
+      ),
+      GalleryPhoto(
+        asset: 'assets/images/classe-filles-saturee.jpg',
+        caption: 'Une salle de classe pleine — plus de places disponibles.',
+      ),
+      GalleryPhoto(
+        asset: 'assets/images/pirogue-groupe.jpg',
+        caption: 'La traversée quotidienne en pirogue pendant la saison des pluies.',
+      ),
+    ],
   ),
 
   // Project(

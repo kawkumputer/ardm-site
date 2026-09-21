@@ -12,6 +12,13 @@ extension ProjectStatusLabel on ProjectStatus {
       };
 }
 
+class GalleryPhoto {
+  final String asset;
+  final String caption;
+
+  const GalleryPhoto({required this.asset, required this.caption});
+}
+
 class Project {
   final String id;
   final String title;
@@ -23,6 +30,7 @@ class Project {
   final String? zone;
   final String? imageAsset;
   final List<String> fundingLeads;
+  final List<GalleryPhoto> gallery;
 
   const Project({
     required this.id,
@@ -35,5 +43,6 @@ class Project {
     this.zone,
     this.imageAsset,
     this.fundingLeads = const [],
+    this.gallery = const [],
   });
 }

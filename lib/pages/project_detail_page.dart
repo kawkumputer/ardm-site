@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../models/project.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_theme.dart';
 import '../widgets/content_wrap.dart';
 import '../widgets/common.dart';
 import '../data/projects_data.dart';
@@ -76,11 +77,49 @@ class ProjectDetailPage extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 16),
                 child: Text(p, style: Theme.of(context).textTheme.bodyLarge),
               ),
+            if (project.gallery.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              _GalleryGrid(photos: project.gallery),
+              const SizedBox(height: 8),
+            ],
             const SizedBox(height: 16),
             PrimaryCta(label: 'Soutenir ce projet', onPressed: () => context.go('/soutenir')),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _GalleryGrid extends StatelessWidget {
+  final List<GalleryPhoto> photos;
+  const _GalleryGrid({required this.photos});
+
+  @override
+  Widget build(BuildContext context) {
+    final isWide = MediaQuery.of(context).size.width >= 640;
+    final captionColor = Theme.of(context).colorScheme.onSurface.withValues(alpha: .65);
+
+    return Wrap(
+      spacing: 16,
+      runSpacing: 16,
+      children: photos.map((photo) {
+        return SizedBox(
+          width: isWide ? (820 - 32) / 3 : double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(photo.asset, height: 160, width: double.infinity, fit: BoxFit.cover),
+              ),
+              const SizedBox(height: 8),
+              Text(photo.caption, style: AppTextStyles.mono(size: 12, color: captionColor)),
+            ],
+          ),
+        );
+      }).toList(),
     );
   }
 }
