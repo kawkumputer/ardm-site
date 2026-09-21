@@ -32,17 +32,17 @@ final List<Project> projects = [
       GalleryPhoto(
         asset: 'assets/images/pirogue-ecoliers.jpg',
         caption: 'La traversée quotidienne en pirogue pendant la saison des pluies.',
-        alignment: Alignment.topCenter,
+        alignment: const Alignment(0, -0.6),
       ),
       GalleryPhoto(
         asset: 'assets/images/pirogue-groupe.jpg',
         caption: 'Plusieurs enfants traversent ensemble, cartables sur le dos.',
-        alignment: Alignment.topCenter,
+        alignment: const Alignment(0, -0.56),
       ),
       GalleryPhoto(
         asset: 'assets/images/pirogue-rive.jpg',
         caption: 'La pirogue accoste près du village.',
-        alignment: Alignment.topCenter,
+        alignment: const Alignment(0, -0.68),
       ),
       GalleryPhoto(
         asset: 'assets/images/classe-garcons-saturee.jpg',
